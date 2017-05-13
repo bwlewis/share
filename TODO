@@ -1,0 +1,7 @@
+- add a simple find operation to locate keys in a service path?
+- minio
+- azure blob store?
+- add attach that creates promises to remote data?
+
+- consider ls("x", pos=object store) ?
+- consider as.url(object store, path) ?
