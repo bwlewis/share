@@ -2,8 +2,7 @@
 % Please edit documentation in R/mongoose.R
 \name{mongoose_start}
 \alias{mongoose_start}
-\title{Start a Mongoose Service
-Manuall start a local mongoose file-backed storage service}
+\title{Start a Mongoose Service}
 \usage{
 mongoose_start(path = getwd(), port = 8000L, forward_to = NULL,
   ssl_cert = NULL, auth_domain = NULL, global_auth = NULL)
@@ -25,8 +24,7 @@ mongoose_start(path = getwd(), port = 8000L, forward_to = NULL,
 Nothing; the mongoose server is started up as a background process.
 }
 \description{
-Start a Mongoose Service
-Manuall start a local mongoose file-backed storage service
+Manually start a local mongoose file-backed storage service.
 }
 \note{
 Leave parameters \code{NULL} to not use the corresponding features.

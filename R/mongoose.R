@@ -125,7 +125,8 @@ mongoose = function(uri, ...)
 }
 
 #' Start a Mongoose Service
-#' Manuall start a local mongoose file-backed storage service
+#'
+#' Manually start a local mongoose file-backed storage service.
 #' @param path full path to data directory, defaults to the current working directory
 #' @param port service port number
 #' @param forward_to forward 'not found' requests to another server
