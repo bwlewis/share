@@ -1,12 +1,12 @@
-# A Really Simple Storage Service for R: share
+# Share: A Really Simple Storage Service for R
 
 The share package presents an extremely simple interface to networked object
 stores. The package includes a lightweight, self-contained, file-backed binary
-object storage service, and is intended to interface to other object service
+object storage service and is intended to interface to other object service
 back end APIs like Amazon S3.  The share package supports GET/PUT/DELETE-style
-operations using modular back end storage services. The package calls those
-operations `get()`, `assign()` (generically corresponding to standard R
-functions), and `delete()`.
+operations against modular storage services. The package calls those operations
+`get()`, `assign()` (generically corresponding to standard R functions), and
+`delete()`.
 
 A simple file-backed object storage service is provided by the included
 Mongoose web service, but we also plan to support minio (https://minio.io) and
@@ -60,8 +60,8 @@ mongoose_stop()
 ## Use case
 
 We often see a need for, as simply as possible, sharing native R values like
-data frames between R processes running across many computers. Many good
-options are of course available, including:
+data frames and matrices between R processes running across many computers.
+Good options are of course available, including:
 
 * Networked file systems like NFS (perhaps the simplest option)
 * Networked databases including key/value stores
@@ -70,8 +70,8 @@ But we wanted an approach that works out of the box without dependencies, and
 could optionally work with some more sophisticated external systems without
 modification. We also wanted speed, multiple options for scalability, speed,
 the simplicity of a file system, _and most important, we want to work with data
-in native R or Python form to minimize or eliminate data marshaling cost._ And
-speed.
+in native form to minimize or eliminate data marshaling/serialization cost._
+And speed.
 
 We see our approach working well with lightweight distributed computing systems
 that are decoupled from I/O like R's foreach and doRedis packages
