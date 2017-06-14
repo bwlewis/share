@@ -1,16 +1,16 @@
-# Share: A Really Simple Storage Service for R
+# Share: Easy Networked R Object Sharing
 
 The share package presents an extremely simple interface to networked object
-stores. The package includes a lightweight, self-contained, file-backed binary
-object storage service and is intended to interface to other object service
-back end APIs like Amazon S3.  The share package supports GET/PUT/DELETE-style
-operations against modular storage services. The package calls those operations
-`get()`, `assign()` (generically corresponding to standard R functions), and
-`delete()`.
+storage. The package includes a self-contained, cross-platform and lightweight
+file-backed binary object storage service and can interface to other object
+service APIs like Amazon S3.  The share package supports GET/PUT/DELETE-style
+operations using base R functions `get()` and `assign()`, and a `delete()`
+function.
 
-A simple file-backed object storage service is provided by the included
-Mongoose web service, but we also plan to support minio (https://minio.io) and
-Amazon S3 object storage services.
+A simple cross-platform file-backed object storage service is provided by the
+included Mongoose web service, but we also plan to support minio
+(https://minio.io) and Amazon S3 object storage services and probably others
+like Azure.
 
 ## Status
 <a href="https://travis-ci.org/bwlewis/share">
