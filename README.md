@@ -16,7 +16,8 @@ like Azure.
 <a href="https://travis-ci.org/bwlewis/share">
 <img src="https://travis-ci.org/bwlewis/share.svg?branch=master" alt="Travis CI status"></img>
 </a>
-![codecov.io](https://codecov.io/github/bwlewis/share/coverage.svg?branch=master)(https://codecov.io/github/bwlewis/share?branch=master)
+
+![codecov.io](https://codecov.io/github/bwlewis/share/coverage.svg?branch=master)
 
 ## Installation (R example)
 
