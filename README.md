@@ -16,7 +16,7 @@ like Azure.
 <a href="https://travis-ci.org/bwlewis/share">
 <img src="https://travis-ci.org/bwlewis/share.svg?branch=master" alt="Travis CI status"></img>
 </a>
-[![codecov.io](https://codecov.io/github/bwlewis/share/coverage.svg?branch=master)](https://codecov.io/github/bwlewis/share?branch=master)
+![codecov.io](https://codecov.io/github/bwlewis/share/coverage.svg?branch=master)(https://codecov.io/github/bwlewis/share?branch=master)
 
 ## Installation (R example)
 
@@ -59,9 +59,10 @@ mongoose_stop()
 
 ## Use case
 
-We often see a need for, as simply as possible, sharing native R values like
-data frames and matrices between R processes running across many computers.
-Good options are of course available, including:
+We (Mike Kane and I and others) often see a need for, as simply as possible,
+sharing native R values like data frames and matrices between R processes
+running across many computers.  Good options are of course available,
+including:
 
 * Networked file systems like NFS (perhaps the simplest option)
 * Networked databases including key/value stores

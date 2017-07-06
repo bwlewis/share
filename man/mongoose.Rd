@@ -32,14 +32,16 @@ Objects are stored as files in the path specified in the \code{path} argument of
 of the share methods. See below for an example.
 }
 \examples{
-# Start an example local mongoose backend server, serving data from a temporary directory:
+# Start an example local mongoose backend server, serving data from a
+# temporary directory:
 tmp <- tempdir()
 mongoose_start(path=tmp)
 con <- connect()
-# Store the 'iris' dataset in a directory named 'mydata', created as a sub-directory of tmp:
+# Store the 'iris' dataset in a directory named 'mydata', created as a
+# sub-directory of 'tmp':
 assign("mydata/iris", iris, con)
-# The above data are stored in serialized, compressed form in the local file system path
-# and can be directly accessed by R through the local file system. For example:
+# The above data are stored in serialized, compressed form in the local
+# file system path and can be directly accessed by R. For example:
 file_path <- paste(tmp, "/mydata/iris", sep="")
 unserialize(lz4::lzDecompress(readBin(file_path, "raw", 1e7)))
 }
