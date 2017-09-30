@@ -2,7 +2,8 @@
 % Please edit documentation in R/methods.R
 \name{toenv}
 \alias{toenv}
-\title{Convert an object store connection object to an environment full of promises}
+\title{Convert an object store connection object to an environment of promises
+Objects are lazily retrieved from the object store using \code{\link{get()}} when accessed.}
 \usage{
 toenv(x, base = "")
 }
@@ -15,7 +16,8 @@ toenv(x, base = "")
 an environment
 }
 \description{
-Convert an object store connection object to an environment full of promises
+Convert an object store connection object to an environment of promises
+Objects are lazily retrieved from the object store using \code{\link{get()}} when accessed.
 }
 \examples{
 \dontrun{

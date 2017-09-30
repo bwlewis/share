@@ -33,7 +33,8 @@ setAs("object_store", "environment", function(from)
   toenv(from)
 })
 
-#' Convert an object store connection object to an environment full of promises
+#' Convert an object store connection object to an environment of promises
+#' Objects are lazily retrieved from the object store using \code{\link{get()}} when accessed.
 #' @param x an object store, see \code{connect()}, \code{\link{setAs}}
 #' @param base base path
 #' @return an environment
