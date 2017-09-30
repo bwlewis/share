@@ -4,8 +4,8 @@ The share package presents an extremely simple interface to networked object
 storage. The package includes a self-contained, cross-platform and lightweight
 file-backed binary object storage service and can interface to other object
 service APIs like Amazon S3.  The share package supports GET/PUT/DELETE-style
-operations using base R functions `get()` and `assign()`, and a `delete()`
-function.
+operations using base R functions `get()` and `assign()` along with a
+`delete()` function.
 
 A simple cross-platform file-backed object storage service is provided by the
 included Mongoose web service, but we also plan to support minio
@@ -92,13 +92,13 @@ https://github.com/coreos/etcd !
 
 ## Features
 
-* Planning to be cross-platform for Windows, Mac OS X and Linux systems, right now testing/developing on Linux.
-* Simple standard GET/PUT/DELETE-style operations
-* Modular storage back ends: mongoose (default), minio, Amazon S3, Azure blob (someday?), ...
+* Cross-platform for Windows, Mac OS X and Linux systems
+* Simple, familiar get/assign operations
+* Modular storage back ends: mongoose (default), minio, Amazon S3, ...
 
 ## Storage back ends
 
-The package is equipped with a self-contained simple but relatively fast HTTP/S
+The package is equipped with a self-contained and simple but fast HTTP/S
 back end service that uses Mongoose (see below for many more details).
 
 But share is designed to work with arbitrary object storage systems.
@@ -177,9 +177,7 @@ Mongoose service to a directory and serve data. Or use an S3 back end.
 https://github.com/bwlewis/share/blob/master/inst/backends/mongoose/README.md
 
 The package includes a basic HTTP/S object store service based on the
-Cesanta mongoose web server (https://github.com/cesanta/mongoose). The
-service is compiled with the R package and ready to run out of the box
-(at least, for now, on Linux -- other operatings systems soon).
+Cesanta mongoose web server (https://github.com/cesanta/mongoose).
 
 See https://github.com/bwlewis/share/blob/master/inst/backends/mongoose/README.md
 for more information and details on installing the mongoose back end as a system
