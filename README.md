@@ -34,16 +34,18 @@ devtools::install_github("bwlewis/share")
 
 ```{r}
 library(share)
-mongoose_start()                      # starts a local mongoose server on port 8000
-                                      # serving data from the current working directory
+mongoose_start(path=tempdir())        # starts a local mongoose server on port 8000
+                                      # serving data from a local temporary directory
 con <- connect()                      # connect to the local mongoose back end
-assign("mystuff/iris", iris, con)     # put a copy of iris in the 'mystuff' subdirectory
-assign("mystuff/cars", cars, con)     # put a copy of cars in the 'mystuff' subdirectory
+assign("cars", head(cars), con)       # put head(cars) in the object "cars"
+assign("Nile", head(Nile), con)       # put head(Nile) in "Nile"
+assign("mystuff/iris", iris, con)     # put a copy of iris in a "mystuff" subdirectory
 
-print(get("mystuff", con))            # list the contents of 'mystuff'
-#    key               mod size
-# 1 cars 24-Apr-2016 13:13  455
-# 2 iris 24-Apr-2016 13:13 2032
+get("/", con)                         # list the contents
+       key               mod size
+1     cars 30-Sep-2017 05:26  215
+2     Nile 30-Sep-2017 05:26   83
+3 mystuff/ 30-Sep-2017 05:26   NA
 
 head(get("mystuff/iris", con))        # retrieve iris from the object store
 #   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
@@ -53,6 +55,20 @@ head(get("mystuff/iris", con))        # retrieve iris from the object store
 # 4          4.6         3.1          1.5         0.2  setosa
 # 5          5.0         3.6          1.4         0.2  setosa
 # 6          5.4         3.9          1.7         0.4  setosa
+
+env = as(con, "environment")          # Object store as an environment
+ls(env)
+# "cars"     "mystuff/" "Nile"    
+
+env$cars
+#   speed dist
+# 1     4    2
+# 2     4   10
+# 3     7    4
+# 4     7   22
+# 5     8   16
+# 6     9   10
+
 
 delete("mystuff", con)                # delete the whole 'mystuff' directory
 mongoose_stop()
