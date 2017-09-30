@@ -56,7 +56,8 @@ head(get("mystuff/iris", con))        # retrieve iris from the object store
 # 5          5.0         3.6          1.4         0.2  setosa
 # 6          5.4         3.9          1.7         0.4  setosa
 
-env = as(con, "environment")          # Object store as an environment
+env = as(con, "environment")          # Object store as a limited environment
+                                      # NOTE: no assign yet!!
 ls(env)
 # "cars"     "mystuff/" "Nile"    
 

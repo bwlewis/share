@@ -2,4 +2,4 @@
 - minio
 - azure blob store?
 
-- consider as.url(object store, path) ?
+- finish support for environments
