@@ -56,12 +56,12 @@ head(get("mystuff/iris", con))        # retrieve iris from the object store
 # 5          5.0         3.6          1.4         0.2  setosa
 # 6          5.4         3.9          1.7         0.4  setosa
 
-env = as(con, "environment")          # Object store as a limited environment
-                                      # NOTE: no assign yet!!
+env = as(con, "environment")          # Object store as a promise environment
+
 ls(env)
 # "cars"     "mystuff/" "Nile"    
 
-env$cars
+env$cars                              # evalue 'cars' promise
 #   speed dist
 # 1     4    2
 # 2     4   10
@@ -69,11 +69,8 @@ env$cars
 # 4     7   22
 # 5     8   16
 # 6     9   10
-
-
-delete("mystuff", con)                # delete the whole 'mystuff' directory
-mongoose_stop()
 ```
+
 
 ## Use case
 
