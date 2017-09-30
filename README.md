@@ -59,7 +59,7 @@ head(get("mystuff/iris", con))        # retrieve iris from the object store
 env = as(con, "environment")          # Object store as a promise environment
 
 ls(env)
-# "cars"     "mystuff/" "Nile"    
+# "cars"     "mystuff" "Nile"
 
 env$cars                              # evalue 'cars' promise
 #   speed dist

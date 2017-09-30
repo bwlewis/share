@@ -53,7 +53,7 @@ setAs("object_store", "environment", function(from)
 #' e = as(con, "environment")
 #' ls(e)
 #' e$cars
-#' (e$"mydata/")$iris
+#' e$"mydata$iris
 #' mongoose_stop()
 #' }
 toenv = function(x, base="")
@@ -68,7 +68,7 @@ toenv = function(x, base="")
    {
      l = new.env()
      l$expr = substitute(toenv(x, y), list(x=x, y=obj))
-     delayedAssign(d$key[j], eval(expr), eval.env=l, assign.env=e)
+     delayedAssign(obj, eval(expr), eval.env=l, assign.env=e)
    } else
    {
      l = new.env()
