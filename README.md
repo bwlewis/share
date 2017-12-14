@@ -1,3 +1,14 @@
+# NOTICE
+
+This experimental package will not be officially developed nor sent to CRAN.
+Don't use it for anything other than experimentation. Instead, use the similar
+but much better storr package, https://github.com/richfitz/storr.
+
+I will likely make the nifty mongoose backend work with storr in the near
+future.
+
+
+
 # Share: Easy Networked R Object Sharing
 
 The share package presents an extremely simple interface to networked object
