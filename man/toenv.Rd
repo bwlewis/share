@@ -3,6 +3,7 @@
 \name{toenv}
 \alias{toenv}
 \title{Convert an object store connection object to an environment of promises
+Convert an object store connection object to an environment of promises.
 Objects are lazily retrieved from the object store using \code{\link{get()}} when accessed.}
 \usage{
 toenv(x, base = "")
@@ -17,26 +18,8 @@ an environment
 }
 \description{
 Convert an object store connection object to an environment of promises
+Convert an object store connection object to an environment of promises.
 Objects are lazily retrieved from the object store using \code{\link{get()}} when accessed.
-}
-\examples{
-\dontrun{
-# Start an example local mongoose backend server
-mongoose_start(path=tempdir())
-con <- connect()
-# Store some data as objects...
-assign("cars", head(cars), con)
-assign("Nile", head(Nile), con)
-# ...more objects in a directory named 'mydata':
-assign("mydata/iris", head(iris), con)
-# Represent the connection as an environment
-e = as(con, "environment")
-ls(e)
-e$cars
-(e$"mydata/")$iris
-mongoose_stop()
-}
 }
 \keyword{function}
 \keyword{internal}
-

@@ -17,4 +17,3 @@ printed object summary
 \description{
 Print a summary of an \code{object_store} connection object
 }
-

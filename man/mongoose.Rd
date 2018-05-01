@@ -43,6 +43,5 @@ assign("mydata/iris", iris, con)
 # The above data are stored in serialized, compressed form in the local
 # file system path and can be directly accessed by R. For example:
 file_path <- paste(tmp, "/mydata/iris", sep="")
-unserialize(lz4::lzDecompress(readBin(file_path, "raw", 1e7)))
+unserialize(fst::decompress_fst(readBin(file_path, "raw", 1e7), "LZ4"))
 }
-

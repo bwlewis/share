@@ -32,4 +32,3 @@ Leave parameters \code{NULL} to not use the corresponding features.
 \seealso{
 \code{\link{htdigest}}
 }
-

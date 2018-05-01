@@ -4,9 +4,7 @@ This experimental package will not be officially developed nor sent to CRAN.
 Don't use it for anything other than experimentation. Instead, use the similar
 but much better storr package, https://github.com/richfitz/storr.
 
-I will likely make the nifty mongoose backend work with storr in the near
-future.
-
+The project is simpler than storr, however.
 
 
 # Share: Easy Networked R Object Sharing
@@ -81,6 +79,9 @@ env$cars                              # evalue 'cars' promise
 # 5     8   16
 # 6     9   10
 ```
+Notice that evaluation  in the last example downloads the `cars` data set and
+replaces the promise with the downloaded in the `env` environment; see
+`?promises` in R's help for details..
 
 
 ## Use case

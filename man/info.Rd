@@ -40,4 +40,3 @@ mongoose_stop()
 \seealso{
 \code{\link{connect}} \code{\link{get}} \code{\link{delete}}
 }
-

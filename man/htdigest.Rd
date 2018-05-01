@@ -27,4 +27,3 @@ in each subdirectory of the mongoose data directory.
 \note{
 See \url{https://httpd.apache.org/docs/current/programs/htdigest.html}.
 }
-

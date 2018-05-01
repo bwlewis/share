@@ -1,5 +1,5 @@
 - add a simple find operation to locate keys in a service path?
-- minio
+- minio / generic S3 API support
 - azure blob store?
 
 - finish support for environments

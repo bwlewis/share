@@ -30,7 +30,7 @@
 #' # The above data are stored in serialized, compressed form in the local
 #' # file system path and can be directly accessed by R. For example:
 #' file_path <- paste(tmp, "/mydata/iris", sep="")
-#' unserialize(lz4::lzDecompress(readBin(file_path, "raw", 1e7)))
+#' unserialize(fst::decompress_fst(readBin(file_path, "raw", 1e7)))
 #' @export
 mongoose = function(uri, ...)
 {
@@ -47,12 +47,12 @@ mongoose = function(uri, ...)
   serialize0 = function(x, con) if(is.raw(x)) x else serialize(x, con, xdr=opts$xdr)
 
   getfun = switch(opts$compression,
-             lz4=function(x) unserialize(lz4::lzDecompress(x)),
+             lz4=function(x) unserialize(fst::decompress_fst(x)),
              gzip=function(x) unserialize(memDecompress(x, type="gzip")),
              xz=function(x) unserialize(memDecompress(x, type="xz")),
              function(x) unserialize(x))
   putfun = switch(opts$compression,
-             lz4=function(x) lz4::lzCompress(serialize0(x, NULL)),
+             lz4=function(x) fst::compress_fst(serialize0(x, NULL), "LZ4"),
              gzip=function(x) memCompress(serialize0(x, NULL), type="gzip"),
              xz=function(x) memCompress(serialize0(x, NULL), type="xz"),
              function(x) serialize(x, NULL))
