@@ -110,12 +110,12 @@ that are decoupled from I/O like R's foreach and doRedis packages
 
 ## Anti use case
 
-The share package is *not* a database. Right now, no claims to data consistency are
-made and a lot of things are left up to the clients (R, whatever). Think of it
-as a very crude networked object storage service like S3.  Forthcoming back ends
-may support varying consistency levels, but even so share is not a
-database. Use a database if you think you need a database.  Or, coordinate
-activity in the store using an external system like
+The share package is *not* a database. Right now, no claims to data consistency
+are made and a lot of things are left up to the clients (R, whatever). Think of
+it as a very crude networked object caching service.  Forthcoming back ends may
+support varying consistency levels, but even so share is not a database. Use a
+database if you think you need a database.  Or, coordinate activity in the
+store using a known-consistent external system like
 https://github.com/coreos/etcd !
 
 ## Features
@@ -134,7 +134,7 @@ Future support for the S3 protocol is planned.
 
 ## Back end API
 
-The rs package requires storage back ends to support the following REST-like
+The share package requires storage back ends to support the following REST-like
 operations:
 
 * get
