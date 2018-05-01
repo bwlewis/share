@@ -25,7 +25,7 @@ Then put the `cert.pem` file in a path available to mongoose specified with the 
 
 See documentation for the `mongoose_start()` function for possible options, including other ports.
 ```r
-library(rs3)
+library(share)
 mongoose_start()
 ```
 
@@ -76,7 +76,7 @@ per-directory access control.
 ### Global authentication example
 
 We use the Apache htdigest program below. You can also use the `htdigest()`
-function in the rs3 R package to generate and edit password files.
+function in the share package to generate and edit password files.
 
 The mongoose server requires that you specify a global digest password file
 with its full path, illustrated below as `/tmp/.htpasswd`.
@@ -138,14 +138,14 @@ starts two local mongoose servers serving data out of each directory,
 respectively. The example then stores two R numeric vectors, one in each
 server.
 ```{r}
-library(rs3)
+library(share)
 path1 = sprintf("%s/1", tempdir())
 path2 = sprintf("%s/2", tempdir())
 dir.create(path1)
 dir.create(path2)
 mongoose_start(port=8001, forward_to="http://localhost:8002", path=path1)
-mongoose_start(port=8002, forward_to="http://localhost:8001", path=path2)
 con1 = connect("http://localhost:8001")
+mongoose_start(port=8002, forward_to="http://localhost:8001", path=path2, stop=FALSE)
 con2 = connect("http://localhost:8002")
 
 assign("one", 1:5, con1)
@@ -180,5 +180,5 @@ mongoose_stop()  # terminate our example local mongoose servers
 
 ## Directory listings
 
-We rigged the mongoose server in rs3 to report directory listings in
-JSON form. This works nicely with the rs3 R package functions.
+We rigged the mongoose server to report directory listings in
+JSON form. This works nicely with the share R package functions.

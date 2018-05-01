@@ -33,9 +33,6 @@ like Azure.
 You'll need the `devtools` package, for instance from `install.packages("devtools")`.
 
 ```{r}
-# A required dependency not yet on CRAN
-devtools::install_github("bwlewis/lz4")
-
 devtools::install_github("bwlewis/share")
 ```
 
@@ -51,10 +48,15 @@ assign("Nile", head(Nile), con)       # put head(Nile) in "Nile"
 assign("mystuff/iris", iris, con)     # put a copy of iris in a "mystuff" subdirectory
 
 get("/", con)                         # list the contents
+get("",  con)                         # alternative syntax
        key               mod size
 1     cars 30-Sep-2017 05:26  215
 2     Nile 30-Sep-2017 05:26   83
 3 mystuff/ 30-Sep-2017 05:26   NA
+
+get("mystuff", con)                   # list contents of mystuff
+   key               mod size
+1 iris 30-Sep-2017 05:26 4892
 
 head(get("mystuff/iris", con))        # retrieve iris from the object store
 #   Sepal.Length Sepal.Width Petal.Length Petal.Width Species

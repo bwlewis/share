@@ -5,7 +5,7 @@
 \title{Start a Mongoose Service}
 \usage{
 mongoose_start(path = getwd(), port = 8000L, forward_to = NULL,
-  ssl_cert = NULL, auth_domain = NULL, global_auth = NULL)
+  ssl_cert = NULL, auth_domain = NULL, global_auth = NULL, stop = TRUE)
 }
 \arguments{
 \item{path}{full path to data directory, defaults to the current working directory}
@@ -19,6 +19,8 @@ mongoose_start(path = getwd(), port = 8000L, forward_to = NULL,
 \item{auth_domain}{HTTP digest authentication domain/realm}
 
 \item{global_auth}{HTTP digest global authentication file (with full path)}
+
+\item{stop}{logical value, if FALSE keep previously started mongoose services running, otherwise terminate them before starting the new service}
 }
 \value{
 Nothing; the mongoose server is started up as a background process.

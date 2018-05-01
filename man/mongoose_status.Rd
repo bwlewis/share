@@ -2,10 +2,10 @@
 % Please edit documentation in R/mongoose.R
 \name{mongoose_status}
 \alias{mongoose_status}
-\title{Report the Status of the Mongoose Service}
+\title{Report the Status of the Mongoose Service(s)}
 \usage{
 mongoose_status()
 }
 \description{
-Report the Status of the Mongoose Service
+Report the Status of the Mongoose Service(s)
 }
