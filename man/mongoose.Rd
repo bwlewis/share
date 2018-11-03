@@ -17,7 +17,7 @@ mongoose(uri, ...)
   \item{ssl_verifypeer}{Optional SSL/TLS peer verification, defaults to 0 (no verification)}
   \item{redirect_limit}{Should be set to the mongoose cluster size, defaults to 3}
   \item{compress}{Compression function, defaults to \code{function(x) memCompress(x, type='gzip')}}
-  \item{decompress}{De-compression function, defaults to \code{memDecompress}}
+  \item{decompress}{De-compression function, defaults to \code{function(x) memDecompress(x, type='gzip')}}
 }}
 }
 \description{
@@ -44,5 +44,6 @@ assign("mydata/iris", iris, con)
 # The above data are stored in serialized, compressed form in the local
 # file system path and can be directly accessed by R. For example:
 file_path <- paste(tmp, "/mydata/iris", sep="")
-unserialize(memDecompress(readBin(file_path, "raw", 1e7)))
+unserialize(memDecompress(readBin(file_path, "raw", 1e7), type='gzip'))
 }
+

@@ -16,3 +16,4 @@ printed object summary
 \description{
 Print a summary of a \code{object_store} object
 }
+

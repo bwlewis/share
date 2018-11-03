@@ -38,3 +38,4 @@ mongoose_stop()
 \seealso{
 \code{\link{mongoose}} \code{link{get,character,object_store-method}} \code{\link{assign,character,ANY,object_store-method}} \code{\link{delete}}
 }
+

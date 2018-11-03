@@ -43,3 +43,4 @@ mongoose_stop()
 \seealso{
 \code{\link{connect}} \code{\link{get,character,object_store-method}} \code{\link{remove}}
 }
+

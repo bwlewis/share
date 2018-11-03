@@ -11,7 +11,7 @@
 #'   \item{ssl_verifypeer}{Optional SSL/TLS peer verification, defaults to 0 (no verification)}
 #'   \item{redirect_limit}{Should be set to the mongoose cluster size, defaults to 3}
 #'   \item{compress}{Compression function, defaults to \code{function(x) memCompress(x, type='gzip')}}
-#'   \item{decompress}{De-compression function, defaults to \code{memDecompress}}
+#'   \item{decompress}{De-compression function, defaults to \code{function(x) memDecompress(x, type='gzip')}}
 #' }
 #' @note The mongoose back end stores R values in compressed (unless compression=I), serialized form.
 #' Default compression is gzip; change using the \code{compression} option.
@@ -31,7 +31,7 @@
 #' # The above data are stored in serialized, compressed form in the local
 #' # file system path and can be directly accessed by R. For example:
 #' file_path <- paste(tmp, "/mydata/iris", sep="")
-#' unserialize(memDecompress(readBin(file_path, "raw", 1e7)))
+#' unserialize(memDecompress(readBin(file_path, "raw", 1e7), type='gzip'))
 #' @export
 mongoose = function(uri, ...)
 {
@@ -40,7 +40,7 @@ mongoose = function(uri, ...)
   opts = list(...)
 
   if (is.null(opts$compress)) opts$compress = function(x) memCompress(x, type="gzip")
-  if (is.null(opts$decompress)) opts$decompress = memDecompress
+  if (is.null(opts$decompress)) opts$decompress = function(x) memDecompress(x, type='gzip')
   if (is.null(opts$ssl_verifyhost)) opts$ssl_verifyhost = 0
   if (is.null(opts$ssl_verifypeer)) opts$ssl_verifypeer = 0
   if (is.null(opts$redirect_limit)) opts$redirect_limit = 3
@@ -48,8 +48,8 @@ mongoose = function(uri, ...)
 
   serialize0 = function(x, con) if (is.raw(x)) x else serialize(x, con, xdr=opts$xdr)
 
-  getfun = unserialize(opts$decompress(x))
-  putfun = opts$compress(serialize0(x, NULL))
+  getfun = function(x) unserialize(opts$decompress(x))
+  putfun = function(x) opts$compress(serialize0(x, NULL))
 
   f = function(action, ...)
   {

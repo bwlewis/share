@@ -23,3 +23,4 @@ Objects are lazily retrieved from the object store using \code{\link{get()}} whe
 }
 \keyword{function}
 \keyword{internal}
+
