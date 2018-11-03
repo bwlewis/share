@@ -10,10 +10,11 @@
 #'   \item{ssl_verifyhost}{Optional SSL/TLS host verification, defaults to 0 (no verification)}
 #'   \item{ssl_verifypeer}{Optional SSL/TLS peer verification, defaults to 0 (no verification)}
 #'   \item{redirect_limit}{Should be set to the mongoose cluster size, defaults to 3}
-#'   \item{compression}{Either 'lz4', 'xz', 'gzip' or 'none'.}
+#'   \item{compress}{Compression function, defaults to \code{function(x) memCompress(x, type='gzip')}}
+#'   \item{decompress}{De-compression function, defaults to \code{memDecompress}}
 #' }
-#' @note The mongoose back end stores R values in compressed (unless compression='none'), serialized form.
-#' Default compression is lz4; change using the \code{compression} option.
+#' @note The mongoose back end stores R values in compressed (unless compression=I), serialized form.
+#' Default compression is gzip; change using the \code{compression} option.
 #'
 #' Objects are stored as files in the path specified in the \code{path} argument of the
 #' \code{\link{mongoose_start}} function, and can be directly accessed by R outside
@@ -30,7 +31,7 @@
 #' # The above data are stored in serialized, compressed form in the local
 #' # file system path and can be directly accessed by R. For example:
 #' file_path <- paste(tmp, "/mydata/iris", sep="")
-#' unserialize(fst::decompress_fst(readBin(file_path, "raw", 1e7)))
+#' unserialize(memDecompress(readBin(file_path, "raw", 1e7)))
 #' @export
 mongoose = function(uri, ...)
 {
@@ -38,7 +39,8 @@ mongoose = function(uri, ...)
   base = uri
   opts = list(...)
 
-  if (is.null(opts$compression)) opts$compression = "lz4"
+  if (is.null(opts$compress)) opts$compress = function(x) memCompress(x, type="gzip")
+  if (is.null(opts$decompress)) opts$decompress = memDecompress
   if (is.null(opts$ssl_verifyhost)) opts$ssl_verifyhost = 0
   if (is.null(opts$ssl_verifypeer)) opts$ssl_verifypeer = 0
   if (is.null(opts$redirect_limit)) opts$redirect_limit = 3
@@ -46,16 +48,8 @@ mongoose = function(uri, ...)
 
   serialize0 = function(x, con) if (is.raw(x)) x else serialize(x, con, xdr=opts$xdr)
 
-  getfun = switch(opts$compression,
-             lz4=function(x) unserialize(fst::decompress_fst(x)),
-             gzip=function(x) unserialize(memDecompress(x, type="gzip")),
-             xz=function(x) unserialize(memDecompress(x, type="xz")),
-             function(x) unserialize(x))
-  putfun = switch(opts$compression,
-             lz4=function(x) fst::compress_fst(serialize0(x, NULL), "LZ4"),
-             gzip=function(x) memCompress(serialize0(x, NULL), type="gzip"),
-             xz=function(x) memCompress(serialize0(x, NULL), type="xz"),
-             function(x) serialize(x, NULL))
+  getfun = unserialize(opts$decompress(x))
+  putfun = opts$compress(serialize0(x, NULL))
 
   f = function(action, ...)
   {

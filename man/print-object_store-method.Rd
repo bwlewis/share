@@ -3,7 +3,7 @@
 \docType{methods}
 \name{print,object_store-method}
 \alias{print,object_store-method}
-\title{Print a summary of a \code{object_store} SciDB database connection object}
+\title{Print a summary of an \code{object_store} object}
 \usage{
 \S4method{print}{object_store}(x)
 }
@@ -14,5 +14,5 @@
 printed object summary
 }
 \description{
-Print a summary of a \code{object_store} SciDB database connection object
+Print a summary of an \code{object_store} object
 }
