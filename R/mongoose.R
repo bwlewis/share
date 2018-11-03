@@ -57,9 +57,9 @@ mongoose = function(uri, ...)
              xz=function(x) memCompress(serialize0(x, NULL), type="xz"),
              function(x) serialize(x, NULL))
 
-  f = function(proto, ...)
+  f = function(action, ...)
   {
-    if (proto == "show")
+    if (action == "show")
     {
       return(message("Mongoose service ", uri))
     }
@@ -75,16 +75,20 @@ mongoose = function(uri, ...)
     args = list(...)
 
     url = paste(base, urlEncodePath(args$key), sep="/") ## XXX urlencode
-    if (!is.null(getOption("mongoose.debug"))) message(proto, ":", url)
-    if (proto == "put")
+    if (!is.null(getOption("mongoose.debug"))) message(action, ":", url)
+    if (action == "put")
     {
       curl::handle_setopt(h, .list = list(customrequest = "PUT"))
       data = putfun(args$value)
-      curl::handle_setopt(h, .list=list(post=TRUE, postfieldsize=length(data), postfields=data))
+      dlen = length(data)
+      if(dlen > 2147483647)
+        curl::handle_setopt(h, .list=list(post=TRUE, postfieldsize_large=dlen, postfields=data))
+      else
+        curl::handle_setopt(h, .list=list(post=TRUE, postfieldsize=dlen, postfields=data))
       resp = curl::curl_fetch_memory(url, handle=h)
       if (resp$status_code > 299) stop("HTTP error ", resp$status_code)
       return(gsub(sprintf("%s/", base), "", resp$url))
-    } else if (proto == "head")
+    } else if (action == "head")
     {
       curl::handle_setopt(h, .list = list(customrequest = "HEAD", nobody=TRUE))
       resp = curl::curl_fetch_memory(url, handle=h)
@@ -97,7 +101,7 @@ mongoose = function(uri, ...)
       names(ans) = n
       ans$url = url
       return(ans)
-    } else if (proto == "get")
+    } else if (action == "get")
     {
       resp = curl::curl_fetch_memory(url, handle=h)
       if (resp$status_code > 299) stop("HTTP error ", resp$status_code)
@@ -114,7 +118,7 @@ mongoose = function(uri, ...)
       }
       return(getfun(resp$content)) ## XXX get rid of copy here? stream?
     }
-    if (proto == "delete")
+    if (action == "delete")
     {
       curl::handle_setopt(h, .list = list(customrequest = "DELETE"))
       resp = curl::curl_fetch_memory(url, handle=h)

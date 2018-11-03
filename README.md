@@ -1,10 +1,11 @@
 # NOTICE
 
-This experimental package will not be officially developed nor sent to CRAN.
-Don't use it for anything other than experimentation. Instead, use the similar
-but much better storr package, https://github.com/richfitz/storr.
+This is a somewhat old experimental package R object cache.  Don't use it for
+anything other than experimentation. Instead, consider using the similar
+package, https://github.com/richfitz/storr.
 
-The project is simpler than storr, however.
+The project is simpler than storr, however. And it includes a self-contained
+and cross-platform networked object storage service.
 
 
 # Share: Easy Networked R Object Sharing

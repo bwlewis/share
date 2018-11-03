@@ -1,8 +1,8 @@
 Package: share
 Type: Package
 Title: Networked Object Sharing and Caching
-Version: 0.0.1
-Date: 2016-05-11
+Version: 0.0.2
+Date: 2018-02-11
 Description: Trivially simple networked object cache for generic R data.
 Authors@R: c(
     person("B. W.", "Lewis", role=c("aut","cre"), email="blewis@illposed.net")

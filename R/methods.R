@@ -8,7 +8,7 @@ setMethod("show", "object_store",
   function(object) {
     .object_storestr(object)
   })
-#' Print a summary of a \code{object_store} SciDB database connection object
+#' Print a summary of an \code{object_store} object
 #' @param x  \code{object_store} object
 #' @return printed object summary
 #' @export
@@ -27,6 +27,14 @@ print.object_store = function(x, ...)
 {
   .object_storestr(x)
 }
+#' List the contents of an \code{object_stor} connection object
+#' @param name \code{object_store} object
+#' @param ... optiona arguments
+#' @export
+setMethod("ls", signature(name="object_store"),
+  function(name) {
+    get("", name)  
+  })
 
 setAs("object_store", "environment", function(from)
 {
