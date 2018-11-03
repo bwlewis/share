@@ -18,9 +18,8 @@ operations using base R functions `get()` and `assign()` along with a
 `delete()` function.
 
 A simple cross-platform file-backed object storage service is provided by the
-included Mongoose web service, but we also plan to support minio
-(https://minio.io) and Amazon S3 object storage services and probably others
-like Azure.
+included Mongoose web service, but we also plan to support s3-compatible
+storage interfaces like Minio (https://minio.io).
 
 ## Status
 <a href="https://travis-ci.org/bwlewis/share">
