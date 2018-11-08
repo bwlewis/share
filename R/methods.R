@@ -42,7 +42,7 @@ setAs("object_store", "environment", function(from)
 })
 
 #' Convert an object store connection object to an environment of promises
-#
+#'
 #' Convert an object store connection object to an environment of promises.
 #' Objects are lazily retrieved from the object store using \code{\link{get()}} when accessed.
 #' @param x an object store, see \code{connect()}, \code{\link{setAs}}
@@ -50,7 +50,6 @@ setAs("object_store", "environment", function(from)
 #' @return an environment
 #' @keywords internal function
 #' @examples
-#' \dontrun{
 #' # Start an example local mongoose backend server
 #' mongoose_start(path=tempdir())
 #' con <- connect()
@@ -63,9 +62,8 @@ setAs("object_store", "environment", function(from)
 #' e = as(con, "environment")
 #' ls(e)
 #' e$cars
-#' e$"mydata$iris
+#' e$mydata$iris
 #' mongoose_stop()
-#' }
 toenv = function(x, base="")
 {
   d = get(base, x)
